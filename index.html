@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhannad Alshmlani - Personal Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" xintegrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; /* Light grayish-blue background */
+        }
+        .header-bg {
+            background-color: #1a202c; /* Dark slate gray */
+            /* Or a gradient: background-image: linear-gradient(to right, #1a202c, #2d3748); */
+        }
+        .section-title {
+            @apply text-3xl font-bold text-slate-700 mb-8 text-center;
+        }
+        .card {
+            @apply bg-white shadow-xl rounded-lg p-6 transition-all duration-300 hover:shadow-2xl;
+        }
+        .tag {
+            @apply bg-indigo-100 text-indigo-700 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full;
+        }
+        .btn-primary {
+            @apply inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition-transform transform hover:scale-105;
+        }
+        .icon-link {
+            @apply text-slate-500 hover:text-indigo-600 transition-colors;
+        }
+        /* Smooth scroll for anchor links */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <nav class="header-bg text-white p-4 sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold hover:text-indigo-300 transition-colors">Muhannad Alshmlani</a>
+            <div class="space-x-4">
+                <a href="#about" class="hover:text-indigo-300 transition-colors">About</a>
+                <a href="#experience" class="hover:text-indigo-300 transition-colors">Experience</a>
+                <a href="#projects" class="hover:text-indigo-300 transition-colors">Projects</a>
+                <a href="#certificates" class="hover:text-indigo-300 transition-colors">Certificates</a>
+                <a href="#contact" class="hover:text-indigo-300 transition-colors">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="header-bg text-white py-20 md:py-32">
+        <div class="container mx-auto text-center px-6">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">Hello, I'm Muhannad Alshmlani</h1>
+            <p class="text-xl md:text-2xl text-indigo-300 mb-8">Cloud Enginner Driving Automation & AI Solution</p>
+            <a href="#contact" class="btn-primary text-lg px-8 py-3">Get in Touch</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-6 md:p-10">
+        <section id="about" class="my-16 scroll-mt-20">
+            <h2 class="section-title">About Me</h2>
+            <div class="card md:flex items-center">
+                <div class="md:w-1/3 text-center md:text-left mb-6 md:mb-0 md:pr-8">
+                     <img src="https://placehold.co/300x300/E2E8F0/1A202C?text=Profile+Pic" alt="Profile Picture" class="rounded-lg shadow-md mx-auto md:mx-0 w-48 h-48 md:w-64 md:h-64 object-cover">
+                </div>
+                <div class="md:w-2/3">
+                    <p class="text-lg text-slate-600 leading-relaxed">
+                        Welcome to my personal space on the web! I am a passionate and results-driven Cloud Enginner Driving Automation & AI Solution with a strong foundation in multicloud and Strong grasp and practical experience with other technologies.. I thrive on solving complex problems and continuously learning new technologies. My journey in Cloud Comptuing enginner has been driven by a curiosity to Innovating new solutions.
+                        <br><br>
+                        Outside of my professional life, I enjoy Hanging out with friends, Fitness routine, and exploring life around me. I believe in the power of collaboration and am always open to new challenges and opportunities.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="my-16 scroll-mt-20">
+            <h2 class="section-title">My Experience</h2>
+            <div class="space-y-8">
+                <div class="card">
+                    <h3 class="text-xl font-semibold text-indigo-700 mb-1">Network & Cloud Computing Secuity Enginner</h3>
+                    <p class="text-md text-slate-600 mb-2">Shared Services Program | Jan 2025 - Present</p>
+                    <ul class="list-disc list-inside text-slate-600 space-y-1">
+                        <li>Managed network and cloud infrastructure for multiple mission-critical organizations.</li>
+                        <li>Configured and managed traffic policies on Fortinet and Palo Alto firewall platforms.</li>
+                        <li>Implementing endpoint protection using proxy filtering combined with EDR/XDR solutions from trendmicro and kaspersky.</li>
+                        <li>Liaise with vendors to articulate requirements, negotiate terms, and secure favorable pricing agreements.</li>
+                        <li>Executing technical tasks while maintaining administrative workflows.</li>
+                    </ul>
+                </div>
+                 <div class="card">
+                    <h3 class="text-xl font-semibold text-indigo-700 mb-1">Cloud Computing Specialist</h3>
+                    <p class="text-md text-slate-600 mb-2">Creative cloud | Jan 2024 - Jan 2025</p>
+                    <ul class="list-disc list-inside text-slate-600 space-y-1">
+                        <li>Guiding customers to optimal cloud solutions tailored to their budget and technical needs.</li>
+                        <li>Helping businesses select cost-effective cloud solutions aligned with their environment.</li>
+                        <li>Educating the team on the contracted cloud solutions while adhering to specified guidelines.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-semibold text-indigo-700 mb-1">Bootcamp: Future Skills And AWS</h3>
+                    <p class="text-md text-slate-600 mb-2">Ministry of commnications and information technology | Jan 2024 - Aug 2024</p>
+                    <ul class="list-disc list-inside text-slate-600 space-y-1">
+                        <li>Design and implement AWS solutions archtitect while exploring diverse services across multiple use cases.</li>
+                        <li>Hands-on exploration of AWS AI/ML services – including Amazon SageMaker, Bedrock, and Rekognition – through applied labs solving real-world use cases.</li>
+                        <li>Implementing AI-powered speech-to-text solutions using Amazon Transcribe (Whisper alternative) with automated infrastructure deployment via AWS CloudFormation (Terraform equivalent).</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-semibold text-indigo-700 mb-1">BootCamp</h3>
+                    <p class="text-md text-slate-600 mb-2">Tuwaiq Academy and alibaba cloud | [Dates of Employment]</p>
+                    <ul class="list-disc list-inside text-slate-600 space-y-1">
+                        <li>Using GitHub/Git to organize work, enforce CI/CD policies, and save time.</li>
+                        <li>Managing infrastructure with Python/SQL for data and automation workflows.</li>
+                        <li>Leveraging Linux + Bash to automate routines and harden systems.</li>
+                        <li>Applying cloud networking concepts and exploring Alibaba Cloud solutions.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="my-16 scroll-mt-20">
+            <h2 class="section-title">Projects & Code</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card flex flex-col">
+                    <h3 class="text-xl font-semibold text-indigo-700 mb-2">[Project Name 1]</h3>
+                    <p class="text-slate-600 mb-4 flex-grow">
+                        A short description of your project, highlighting its purpose and key features.
+                        Mention the technologies used.
+                    </p>
+                    <div class="mb-4">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">React</span>
+                        <span class="tag">Node.js</span>
+                    </div>
+                    <div>
+                        <a href="[Link to GitHub Repository]" target="_blank" class="btn-primary mr-2"><i class="fab fa-github mr-1"></i> GitHub</a>
+                        </div>
+                </div>
+                <div class="card flex flex-col">
+                    <h3 class="text-xl font-semibold text-indigo-700 mb-2">[Project Name 2]</h3>
+                    <p class="text-slate-600 mb-4 flex-grow">
+                        Another cool project. Explain what it does and why it's interesting.
+                    </p>
+                     <div class="mb-4">
+                        <span class="tag">Python</span>
+                        <span class="tag">Django</span>
+                        <span class="tag">API</span>
+                    </div>
+                    <div>
+                        <a href="[Link to GitHub Repository]" target="_blank" class="btn-primary"><i class="fab fa-github mr-1"></i> GitHub</a>
+                    </div>
+                </div>
+                </div>
+        </section>
+
+        <section id="certificates" class="my-16 scroll-mt-20">
+            <h2 class="section-title">Certificates & Achievements</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="card">
+                    <h3 class="text-xl font-semibold text-indigo-700 mb-1">Cisco Certified Network Associate (CCNA)</h3>
+                    <p class="text-md text-slate-600 mb-2">Issued by: Cisco</p>
+                    <p class="text-sm text-slate-500">Date: May 2023</p>
+                    </div>
+                <div class="card">
+                    <h3 class="text-xl font-semibold text-indigo-700 mb-1">AWS certified Cloud Practitioner</h3>
+                    <p class="text-md text-slate-600 mb-2">Issued by: Amazon Web Services</p>
+                    <p class="text-sm text-slate-500">Date: May 2024</p>
+                </div>
+                 <div class="card">
+                    <h3 class="text-xl font-semibold text-indigo-700 mb-1">Google Cloud Certified Proffessional Cloud Architect</h3>
+                    <p class="text-md text-slate-600 mb-2">Issued by: Google Cloud</p>
+                    <p class="text-sm text-slate-500">Date: Aug 2024</p>
+                </div>
+                 <div class="card">
+                    <h3 class="text-xl font-semibold text-indigo-700 mb-1">Reliable Google Cloud Infrastructre: Desgin and process</h3>
+                    <p class="text-md text-slate-600 mb-2">Issued by: Google Cloud</p>
+                    <p class="text-sm text-slate-500">Date: Sep 2024</p>
+                </div>
+                 <div class="card">
+                    <h3 class="text-xl font-semibold text-indigo-700 mb-1">Alibaba Cloud Associate</h3>
+                    <p class="text-md text-slate-600 mb-2">Issued by: Alibaba Cloud</p>
+                    <p class="text-sm text-slate-500">Date: Nov 2023</p>
+                </div>
+                 <div class="card">
+                    <h3 class="text-xl font-semibold text-indigo-700 mb-1">Alibaba Cloud Professional</h3>
+                    <p class="text-md text-slate-600 mb-2">Issued by: Alibaba Cloud</p>
+                    <p class="text-sm text-slate-500">Date: Nov 2023</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="my-16 scroll-mt-20">
+            <h2 class="section-title">Skills</h2>
+            <div class="card">
+                <div class="flex flex-wrap justify-center gap-4">
+                    <span class="tag text-base py-1 px-3 bg-slate-200 text-slate-700">Networking</span>
+                    <span class="tag text-base py-1 px-3 bg-slate-200 text-slate-700">MultiCloud</span>
+                    <span class="tag text-base py-1 px-3 bg-slate-200 text-slate-700">Automations</span>
+                    <span class="tag text-base py-1 px-3 bg-slate-200 text-slate-700">Docker and Yaml</span>
+                    <span class="tag text-base py-1 px-3 bg-slate-200 text-slate-700">Ansible</span>
+                    <span class="tag text-base py-1 px-3 bg-slate-200 text-slate-700">New Technologies understanding</span>
+                    <span class="tag text-base py-1 px-3 bg-slate-200 text-slate-700">Leading full lifecycle implementation from design through execution</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="my-16 py-16 bg-slate-100 rounded-lg scroll-mt-20">
+            <div class="container mx-auto text-center px-6">
+                <h2 class="section-title !text-slate-800">Get In Touch</h2>
+                <p class="text-lg text-slate-600 mb-8">
+                    I'm always open to discussing new projects, creative ideas, or opportunities to be part of something great.
+                    Feel free to reach out!
+                </p>
+                <a href="mailto:MuhannadAlshmlani@gmail.com" class="btn-primary text-lg px-8 py-3 mb-6 md:mb-0 md:mr-4">
+                    <i class="fas fa-envelope mr-2"></i> Email Me
+                </a>
+                <div class="mt-8 flex justify-center space-x-6">
+                    <a href="https://www.linkedin.com/in/Alshmlani-muhannad" target="_blank" class="icon-link text-3xl"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/Alshmlani-Muhannad" target="_blank" class="icon-link text-3xl"><i class="fab fa-github"></i></a>
+                    </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="header-bg text-white text-center p-6">
+        <p>&copy; <span id="currentYear"></span> Muhannad Alshmlani. All rights reserved.</p>
+        <p class="text-sm text-slate-400 mt-1">Designed with <i class="fas fa-heart text-red-500"></i> and Tailwind CSS.</p>
+    </footer>
+
+    <script>
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
