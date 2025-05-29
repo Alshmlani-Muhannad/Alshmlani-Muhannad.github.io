@@ -48,19 +48,37 @@
         .js-scroll-trigger.is-visible,
         .js-header-item.is-visible {
             opacity: 1;
-            transform: translateY(0) scale(1);
+            transform: translateY(0) scale(1); /* Combined target state */
         }
 
+        /* Initial states for different header item animations */
         .js-header-item.title-animate { transform: translateY(-20px); }
         .js-header-item.subtitle-animate { transform: translateY(20px); }
         .js-header-item.button-animate { transform: scale(0.9); }
 
+        /* Active navigation link style */
         nav a.active-nav-link {
-            color: #a5b4fc; /* Tailwind's indigo-300, or choose another like indigo-400 (#818cf8) */
+            color: #a5b4fc; /* Tailwind's indigo-300 */
             font-weight: 600; /* semibold */
         }
         nav a.active-nav-link:hover {
              color: #c7d2fe; /* Tailwind's indigo-200 */
+        }
+
+        /* STYLES FOR DIAGNOSTIC GREEN LINE */
+        .diagnostic-line {
+            position: fixed; 
+            top: 60px; /* Adjust if nav height changes (p-4 on nav makes it roughly this) */
+            left: 0;
+            width: 0%; 
+            height: 5px;
+            background-color: #10B981; /* Bright green */
+            z-index: 10000; 
+            transition: width 2s ease-out; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.25);
+        }
+        .diagnostic-line.animate-line {
+            width: 100%; 
         }
 
     </style>
@@ -80,6 +98,8 @@
             </div>
         </div>
     </nav>
+
+    <div id="diagnostic-green-line" class="diagnostic-line"></div>
 
     <header class="header-bg text-white py-20 md:py-32">
         <div class="container mx-auto text-center px-6">
@@ -164,7 +184,9 @@
                         <span class="tag">Designed</span>
                         <span class="tag">implementation</span>
                     </div>
-                    <a href="https://ramlbox.com/" target="_blank" class="btn-primary mr-2 self-start"> <img src="rb.png" alt="Ramlbox Logo" style="height: 20px; vertical-align: middle; margin-right: 5px; display: inline-block;"> Visit Ramlbox
+                    <a href="https://ramlbox.com/" target="_blank" class="btn-primary mr-2 self-start"> 
+                        <img src="rb.png" alt="Ramlbox Logo" style="height: 20px; vertical-align: middle; margin-right: 5px; display: inline-block;">
+                        Visit Ramlbox
                     </a>
                 </div>
                 <div class="card flex flex-col js-scroll-trigger">
@@ -178,9 +200,10 @@
                         <span class="tag">API and Automations</span>
                     </div>
                     <div>
-                        <a href="[Link to GitHub Repository]" target="_blank" class="btn-primary self-start"><i class="fab fa-github mr-1"></i> GitHub</a> </div>
+                        <a href="[Link to GitHub Repository]" target="_blank" class="btn-primary self-start"><i class="fab fa-github mr-1"></i> GitHub</a>
+                    </div>
                 </div>
-            </div>
+                </div>
         </section>
 
         <section id="certificates" class="my-16 scroll-mt-20 js-scroll-trigger">
@@ -267,64 +290,90 @@
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
         document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- START: DIAGNOSTIC GREEN LINE ANIMATION ---
+            const diagnosticLine = document.getElementById('diagnostic-green-line');
+            if (diagnosticLine) {
+                console.log('Diagnostic line element FOUND. Starting animation attempt...');
+                setTimeout(() => {
+                    diagnosticLine.classList.add('animate-line');
+                    console.log('Diagnostic line animation class "animate-line" ADDED.');
+                }, 300); 
+            } else {
+                console.error('Diagnostic line element "diagnostic-green-line" NOT FOUND in the DOM.');
+            }
+            // --- END: DIAGNOSTIC GREEN LINE ANIMATION ---
+
             // --- Header Animations ---
             const headerItems = document.querySelectorAll('.js-header-item');
             headerItems.forEach((item, index) => {
                 setTimeout(() => {
                     item.classList.add('is-visible');
-                }, index * 200); // Stagger animation
+                }, index * 200 + 400); // Added a base delay to let diagnostic line start first if desired
             });
 
             // --- Scroll Animations with Intersection Observer ---
             const scrollTriggers = document.querySelectorAll('.js-scroll-trigger');
             
             const observerOptions = {
-                root: null, // viewport
+                root: null, 
                 rootMargin: '0px',
-                threshold: 0.1 // % of item visible to trigger
+                threshold: 0.1 
             };
 
             const observerCallback = (entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
-                        // Optional: unobserve after animation if you want it to animate only once
-                        // observer.unobserve(entry.target); 
+                        // observer.unobserve(entry.target); // Optional: unobserve after first animation
                     } else {
-                        // Optional: remove class to re-animate if scrolling up and then down again
-                        // entry.target.classList.remove('is-visible');
+                        // Optional: remove class to re-animate if scrolling up then down
+                        // entry.target.classList.remove('is-visible'); 
                     }
                 });
             };
 
             const scrollObserver = new IntersectionObserver(observerCallback, observerOptions);
-            scrollTriggers.forEach(trigger => scrollObserver.observe(trigger));
+            scrollTriggers.forEach(trigger => {
+                if (trigger) { // Check if trigger element actually exists
+                     scrollObserver.observe(trigger);
+                }
+            });
 
             // --- Active Navigation Link Highlighting ---
-            const navLinks = document.querySelectorAll('nav .nav-links a');
-            const sections = document.querySelectorAll('main section[id]'); // Ensure sections have IDs
+            const navLinksContainer = document.querySelector('nav .nav-links');
+            if (navLinksContainer) {
+                const navLinks = navLinksContainer.querySelectorAll('a');
+                const sections = document.querySelectorAll('main section[id]');
 
-            function changeNavOnScroll() {
-                let currentSectionId = '';
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    const sectionHeight = section.clientHeight;
-                     // Adjust offset for sticky header height (approx 64px or whatever its height is)
-                    if (pageYOffset >= (sectionTop - section.clientHeight / 3 - 70)) { 
-                        currentSectionId = section.getAttribute('id');
-                    }
-                });
+                function changeNavOnScroll() {
+                    let currentSectionId = '';
+                    sections.forEach(section => {
+                        if (section) { // Check if section exists
+                            const sectionTop = section.offsetTop;
+                            // Consider sticky nav height (approx 60px in this case) + some buffer
+                            const triggerPoint = sectionTop - (section.clientHeight / 3) - 70; 
+                            if (pageYOffset >= triggerPoint) {
+                                currentSectionId = section.getAttribute('id');
+                            }
+                        }
+                    });
 
-                navLinks.forEach(link => {
-                    link.classList.remove('active-nav-link');
-                    if (link.getAttribute('href') === `#${currentSectionId}`) {
-                        link.classList.add('active-nav-link');
-                    }
-                });
+                    navLinks.forEach(link => {
+                        if (link) { // Check if link exists
+                            link.classList.remove('active-nav-link');
+                            if (link.getAttribute('href') === `#${currentSectionId}`) {
+                                link.classList.add('active-nav-link');
+                            }
+                        }
+                    });
+                }
+
+                window.addEventListener('scroll', changeNavOnScroll);
+                changeNavOnScroll(); // Initial check on load
+            } else {
+                console.error('Navigation links container ".nav-links" not found.');
             }
-
-            window.addEventListener('scroll', changeNavOnScroll);
-            changeNavOnScroll(); // Call on load to set initial active link if any
         });
     </script>
 </body>
