@@ -89,6 +89,17 @@
         nav a.active-nav-link:hover {
              color: #c7d2fe; /* Tailwind's indigo-200 */
         }
+        
+        .certificate-link {
+            @apply text-indigo-600 hover:text-indigo-800 transition-colors cursor-pointer;
+            text-decoration: none;
+        }
+        .verify-badge {
+            @apply text-xs text-indigo-500 mt-2 inline-flex items-center;
+        }
+        .verify-badge i {
+            @apply mr-1;
+        }
 
     </style>
 </head>
@@ -215,32 +226,62 @@
             <h2 class="section-title js-scroll-trigger">Certificates & Achievements</h2>
             <div class="grid md:grid-cols-2 gap-8">
                 <div class="card js-scroll-trigger">
-                    <h3 class="text-xl font-semibold text-indigo-700 mb-1">Cisco Certified Network Associate (CCNA)</h3>
+                    <h3 class="text-xl font-semibold text-indigo-700 mb-1">
+                        <a href="https://cp.certmetrics.com/cisco/en/public/verify/credential/0bd7ac0b162b4a5ab5302045d30dde94" target="_blank" class="certificate-link">
+                            Cisco Certified Network Associate (CCNA)
+                            <span class="verify-badge"><i class="fas fa-external-link-alt"></i> Verify credential</span>
+                        </a>
+                    </h3>
                     <p class="text-md text-slate-600 mb-2">Issued by: Cisco</p>
                     <p class="text-sm text-slate-500">Date: May 2023</p>
                 </div>
                 <div class="card js-scroll-trigger">
-                    <h3 class="text-xl font-semibold text-indigo-700 mb-1">AWS certified Cloud Practitioner</h3>
+                    <h3 class="text-xl font-semibold text-indigo-700 mb-1">
+                        <a href="https://cp.certmetrics.com/amazon/en/public/verify/credential/b52eed3f67c14b8683fdf00c63ac845b" target="_blank" class="certificate-link">
+                            AWS certified Cloud Practitioner
+                            <span class="verify-badge"><i class="fas fa-external-link-alt"></i> Verify credential</span>
+                        </a>
+                    </h3>
                     <p class="text-md text-slate-600 mb-2">Issued by: Amazon Web Services</p>
                     <p class="text-sm text-slate-500">Date: May 2024</p>
                 </div>
                 <div class="card js-scroll-trigger">
-                    <h3 class="text-xl font-semibold text-indigo-700 mb-1">Google Cloud Certified Professional Cloud Architect</h3>
+                    <h3 class="text-xl font-semibold text-indigo-700 mb-1">
+                        <a href="https://partner.cloudskillsboost.google/public_profiles/24d507b7-3ab0-4c6e-ae95-c0893f194f7a/badges/10991020" target="_blank" class="certificate-link">
+                            Google Cloud Certified Professional Cloud Architect
+                            <span class="verify-badge"><i class="fas fa-external-link-alt"></i> Verify credential</span>
+                        </a>
+                    </h3>
                     <p class="text-md text-slate-600 mb-2">Issued by: Google Cloud</p>
                     <p class="text-sm text-slate-500">Date: Aug 2024</p>
                 </div>
                 <div class="card js-scroll-trigger">
-                    <h3 class="text-xl font-semibold text-indigo-700 mb-1">Reliable Google Cloud Infrastructure: Design and Process</h3>
+                    <h3 class="text-xl font-semibold text-indigo-700 mb-1">
+                        <a href="https://partner.cloudskillsboost.google/public_profiles/24d507b7-3ab0-4c6e-ae95-c0893f194f7a/badges/11432069" target="_blank" class="certificate-link">
+                            Reliable Google Cloud Infrastructure: Design and Process
+                            <span class="verify-badge"><i class="fas fa-external-link-alt"></i> Verify credential</span>
+                        </a>
+                    </h3>
                     <p class="text-md text-slate-600 mb-2">Issued by: Google Cloud</p>
                     <p class="text-sm text-slate-500">Date: Sep 2024</p>
                 </div>
                 <div class="card js-scroll-trigger">
-                    <h3 class="text-xl font-semibold text-indigo-700 mb-1">Alibaba Cloud Associate</h3>
+                    <h3 class="text-xl font-semibold text-indigo-700 mb-1">
+                        <a href="https://drive.google.com/file/d/1ohGjjAKiRnAEp1_RTYnH1s0_xi4SQk6m/view" target="_blank" class="certificate-link">
+                            Alibaba Cloud Associate
+                            <span class="verify-badge"><i class="fas fa-external-link-alt"></i> Verify credential</span>
+                        </a>
+                    </h3>
                     <p class="text-md text-slate-600 mb-2">Issued by: Alibaba Cloud</p>
                     <p class="text-sm text-slate-500">Date: Nov 2023</p>
                 </div>
                 <div class="card js-scroll-trigger">
-                    <h3 class="text-xl font-semibold text-indigo-700 mb-1">Alibaba Cloud Professional</h3>
+                    <h3 class="text-xl font-semibold text-indigo-700 mb-1">
+                        <a href="https://drive.google.com/file/d/1r5n_Zv04dcczIpVlO3LnF_IeTMbLGb13/view" target="_blank" class="certificate-link">
+                            Alibaba Cloud Professional
+                            <span class="verify-badge"><i class="fas fa-external-link-alt"></i> Verify credential</span>
+                        </a>
+                    </h3>
                     <p class="text-md text-slate-600 mb-2">Issued by: Alibaba Cloud</p>
                     <p class="text-sm text-slate-500">Date: Nov 2023</p>
                 </div>
