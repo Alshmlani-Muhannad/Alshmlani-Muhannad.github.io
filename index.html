@@ -34,54 +34,23 @@
             overflow: hidden;
         }
         .section-title {
-            /* Tailwind: text-3xl font-bold text-slate-700 mb-8 text-center */
-            font-size: 1.875rem;
-            font-weight: 700;
-            color: #334155;
-            margin-bottom: 2rem;
-            text-align: center;
+            @apply text-3xl font-bold text-slate-700 mb-8 text-center;
         }
         .card {
-            background-color: #fff;
-            box-shadow: 0 10px 25px 0 rgba(30,41,59,0.08), 0 1.5px 4px 0 rgba(30,41,59,0.03);
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            transition: all 0.3s;
-        }
-        .card:hover {
-            box-shadow: 0 20px 40px 0 rgba(30,41,59,0.12), 0 3px 8px 0 rgba(30,41,59,0.06);
+            @apply bg-white shadow-xl rounded-lg p-6 transition-all duration-300 hover:shadow-2xl;
         }
         .tag {
-            background-color: #e0e7ff;
-            color: #4338ca;
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-right: 0.5rem;
-            padding: 0.125rem 0.625rem;
-            border-radius: 9999px;
+            @apply bg-indigo-100 text-indigo-700 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full;
         }
         .btn-primary {
-            display: inline-block;
-            background-color: #4f46e5;
-            color: #fff;
-            font-weight: 600;
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 2px 8px 0 rgba(79,70,229,0.15);
-            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
-        }
-        .btn-primary:hover {
-            background-color: #4338ca;
-            transform: scale(1.05);
-            box-shadow: 0 4px 16px 0 rgba(79,70,229,0.25);
+            @apply inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition-transform transform hover:scale-105;
         }
         .icon-link {
-            color: #64748b;
-            transition: color 0.2s, transform 0.3s;
+            @apply text-slate-500 hover:text-indigo-600 transition-colors;
             display: inline-block;
+            transition: transform 0.3s ease;
         }
         .icon-link:hover {
-            color: #4f46e5;
             animation: shake 0.5s ease infinite;
         }
         @keyframes shake {
@@ -114,94 +83,29 @@
         .js-header-item.button-animate { transform: scale(0.9); }
 
         nav a.active-nav-link {
-            color: #a5b4fc;
-            font-weight: 600;
+            color: #a5b4fc; /* Tailwind's indigo-300, or choose another like indigo-400 (#818cf8) */
+            font-weight: 600; /* semibold */
         }
         nav a.active-nav-link:hover {
-             color: #c7d2fe;
+             color: #c7d2fe; /* Tailwind's indigo-200 */
         }
         
         .verify-btn {
-            margin-top: 0.75rem;
-            font-size: 0.875rem;
-            font-weight: 500;
-            padding: 0.375rem 1rem;
-            border-radius: 0.5rem;
+            @apply mt-3 text-sm font-medium py-1.5 px-4 rounded;
             background-color: #c7d2fe;
             color: #f0f4f8;
             display: inline-flex;
             align-items: center;
-            transition: all 0.2s;
+            transition: all 0.2s ease;
         }
         .verify-btn:hover {
             background-color: #c7d2fe;
             transform: translateY(-1px);
         }
         .verify-btn i {
-            margin-right: 0.375rem;
+            @apply mr-1.5;
         }
 
-        /* --- GLOWING SHINE EFFECT FOR 01 01 --- */
-        .binary-shine {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 2;
-            font-family: 'Fira Mono', 'Menlo', 'Monaco', 'Consolas', monospace;
-            font-size: clamp(2.5rem, 8vw, 7rem);
-            font-weight: 900;
-            letter-spacing: 0.5rem;
-            color: #a5b4fc;
-            opacity: 0.95;
-            filter: blur(0.5px);
-            text-shadow:
-                0 0 8px #818cf8,
-                0 0 16px #818cf8,
-                0 0 32px #818cf8,
-                0 0 64px #818cf8;
-            pointer-events: none;
-            user-select: none;
-            animation: binary-glow 1.2s cubic-bezier(.4,2,.6,1) 0.5s 1 both;
-        }
-        @keyframes binary-glow {
-            0% {
-                opacity: 0;
-                filter: blur(8px) brightness(1.5);
-                text-shadow:
-                    0 0 0px #818cf8,
-                    0 0 0px #818cf8,
-                    0 0 0px #818cf8,
-                    0 0 0px #818cf8;
-            }
-            40% {
-                opacity: 1;
-                filter: blur(1.5px) brightness(2.5);
-                text-shadow:
-                    0 0 16px #818cf8,
-                    0 0 32px #818cf8,
-                    0 0 64px #818cf8,
-                    0 0 128px #818cf8;
-            }
-            70% {
-                opacity: 1;
-                filter: blur(0.5px) brightness(3.5);
-                text-shadow:
-                    0 0 32px #c7d2fe,
-                    0 0 64px #818cf8,
-                    0 0 128px #818cf8,
-                    0 0 256px #818cf8;
-            }
-            100% {
-                opacity: 0.95;
-                filter: blur(0.5px) brightness(1.2);
-                text-shadow:
-                    0 0 8px #818cf8,
-                    0 0 16px #818cf8,
-                    0 0 32px #818cf8,
-                    0 0 64px #818cf8;
-            }
-        }
     </style>
 </head>
 <body class="text-slate-800">
@@ -220,10 +124,8 @@
         </div>
     </nav>
 
-    <header class="header-bg text-white py-20 md:py-32" style="position:relative;">
+    <header class="header-bg text-white py-20 md:py-32">
         <div class="binary-bg" id="binaryBackground"></div>
-        <!-- Glowing 01 01 shine in the center -->
-        <div class="binary-shine" aria-hidden="true">01&nbsp;01</div>
         <div class="container mx-auto text-center px-6 relative z-10">
             <h1 class="text-4xl md:text-6xl font-bold mb-4 js-header-item title-animate">Hello, I'm Muhannad Alshmlani</h1>
             <p class="text-xl md:text-2xl text-indigo-300 mb-8 js-header-item subtitle-animate">Cloud Engineer Driving Automation & AI Solutions</p>
@@ -232,8 +134,189 @@
     </header>
 
     <main class="container mx-auto p-6 md:p-10">
-        <!-- ... rest of your content unchanged ... -->
-        <!-- (Omitted for brevity, keep as in your original code) -->
+        <section id="about" class="my-16 scroll-mt-20 js-scroll-trigger">
+            <h2 class="section-title js-scroll-trigger">About Me</h2>
+            <div class="card md:flex items-center js-scroll-trigger">
+                <div class="md:w-1/3 text-center md:text-left mb-6 md:mb-0 md:pr-8">
+                    <img src="https://placehold.co/300x300/E2E8F0/1A202C?text=Profile+Pic" alt="Profile Picture" class="rounded-lg shadow-md mx-auto md:mx-0 w-48 h-48 md:w-64 md:h-64 object-cover">
+                </div>
+                <div class="md:w-2/3">
+                    <p class="text-lg text-slate-600 leading-relaxed">
+                        Welcome to my personal space on the web! I am a passionate and results-driven Cloud Enginner Driving Automation & AI Solution with a strong foundation in multicloud and Strong grasp and practical experience with other technologies.. I thrive on solving complex problems and continuously learning new technologies. My journey in Cloud Computing Engineer has been driven by a curiosity to Innovating new solutions.
+                        <br><br>
+                        Outside of my professional life, I enjoy Hanging out with friends, Fitness routine, and exploring life around me. I believe in the power of collaboration and am always open to new challenges and opportunities.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="my-16 scroll-mt-20 js-scroll-trigger">
+            <h2 class="section-title js-scroll-trigger">My Experience</h2>
+            <div class="space-y-8">
+                <div class="card js-scroll-trigger">
+                    <h3 class="text-xl font-semibold text-indigo-700 mb-1">Network & Cloud Computing Secuity Enginner</h3>
+                    <p class="text-md text-slate-600 mb-2">Shared Services Program | Jan 2025 - Present</p>
+                    <ul class="list-disc list-inside text-slate-600 space-y-1">
+                        <li>Managed network and cloud infrastructure for multiple mission-critical organizations.</li>
+                        <li>Configured and managed traffic policies on Fortinet and Palo Alto firewall platforms.</li>
+                        <li>Implementing endpoint protection using proxy filtering combined with EDR/XDR solutions from trendmicro and kaspersky.</li>
+                        <li>Liaise with vendors to articulate requirements, negotiate terms, and secure favorable pricing agreements.</li>
+                        <li>Executing technical tasks while maintaining administrative workflows.</li>
+                    </ul>
+                </div>
+                <div class="card js-scroll-trigger">
+                    <h3 class="text-xl font-semibold text-indigo-700 mb-1">Cloud Computing Specialist</h3>
+                    <p class="text-md text-slate-600 mb-2">Creative cloud | Jan 2024 - Jan 2025</p>
+                    <ul class="list-disc list-inside text-slate-600 space-y-1">
+                        <li>Guiding customers to optimal cloud solutions tailored to their budget and technical needs.</li>
+                        <li>Helping businesses select cost-effective cloud solutions aligned with their environment.</li>
+                        <li>Educating the team on the contracted cloud solutions while adhering to specified guidelines.</li>
+                    </ul>
+                </div>
+                <div class="card js-scroll-trigger">
+                    <h3 class="text-xl font-semibold text-indigo-700 mb-1">Bootcamp: Future Skills And AWS</h3>
+                    <p class="text-md text-slate-600 mb-2">Ministry of commnications and information technology | Jan 2024 - Aug 2024</p>
+                    <ul class="list-disc list-inside text-slate-600 space-y-1">
+                        <li>Design and implement AWS solutions archtitect while exploring diverse services across multiple use cases.</li>
+                        <li>Hands-on exploration of AWS AI/ML services – including Amazon SageMaker, Bedrock, and Rekognition – through applied labs solving real-world use cases.</li>
+                        <li>Implementing AI-powered speech-to-text solutions using Amazon Transcribe (Whisper alternative) with automated infrastructure deployment via AWS CloudFormation (Terraform equivalent).</li>
+                    </ul>
+                </div>
+                <div class="card js-scroll-trigger">
+                    <h3 class="text-xl font-semibold text-indigo-700 mb-1">BootCamp</h3>
+                    <p class="text-md text-slate-600 mb-2">Tuwaiq Academy and Alibaba Cloud | Oct 2023 - Nov 2023</p>
+                    <ul class="list-disc list-inside text-slate-600 space-y-1">
+                        <li>Using GitHub/Git to organize work, enforce CI/CD policies, and save time.</li>
+                        <li>Managing infrastructure with Python/SQL for data and automation workflows.</li>
+                        <li>Leveraging Linux + Bash to automate routines and harden systems.</li>
+                        <li>Applying cloud networking concepts and exploring Alibaba Cloud solutions.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="my-16 scroll-mt-20 js-scroll-trigger">
+            <h2 class="section-title js-scroll-trigger">Projects & Code</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card flex flex-col js-scroll-trigger">
+                    <h3 class="text-xl font-semibold text-indigo-700 mb-2">ramlbox.com</h3>
+                    <p class="text-slate-600 mb-4 flex-grow">
+                        Developed and managed a secure e-commerce platform for digital products, handling end-to-end implementation including cybersecurity measures, technical infrastructure, UI/UX design, marketing strategy, and workflow automation..
+                    </p>
+                    <div class="mb-4">
+                        <span class="tag">Hosting</span>
+                        <span class="tag">Designed</span>
+                        <span class="tag">implementation</span>
+                    </div>
+                    <a href="https://ramlbox.com/" target="_blank" class="btn-primary mr-2 self-start"> <img src="rb.png" alt="Ramlbox Logo" style="height: 20px; vertical-align: middle; margin-right: 5px; display: inline-block;"> Visit Ramlbox
+                    </a>
+                </div>
+                <div class="card flex flex-col js-scroll-trigger">
+                    <h3 class="text-xl font-semibold text-indigo-700 mb-2">Automate news in X app account</h3>
+                    <p class="text-slate-600 mb-4 flex-grow">
+                        An automated pipeline collects news from multiple sources, processes it through an AI agent to optimize for X platform formatting, then publishes it sequentially via Telegram (as an intermediary to avoid direct API costs). The system automatically feeds each reformulated post from Telegram to my X account via mobile integration, completing the fully automated news dissemination workflow.
+                    </p>
+                    <div class="mb-4">
+                        <span class="tag">Python</span>
+                        <span class="tag">agent AI</span>
+                        <span class="tag">API and Automations</span>
+                    </div>
+                    <div>
+                        <a href="[Link to GitHub Repository]" target="_blank" class="btn-primary self-start"><i class="fab fa-github mr-1"></i> GitHub</a> </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="certificates" class="my-16 scroll-mt-20 js-scroll-trigger">
+            <h2 class="section-title js-scroll-trigger">Certificates & Achievements</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="card js-scroll-trigger">
+                    <h3 class="text-xl font-semibold text-indigo-700 mb-1">Cisco Certified Network Associate (CCNA)</h3>
+                    <p class="text-md text-slate-600 mb-2">Issued by: Cisco</p>
+                    <p class="text-sm text-slate-500 mb-3">Date: May 2023</p>
+                    <a href="https://cp.certmetrics.com/cisco/en/public/verify/credential/0bd7ac0b162b4a5ab5302045d30dde94" target="_blank" class="verify-btn">
+                        <i class="fas fa-external-link-alt"></i> Credential
+                    </a>
+                </div>
+                <div class="card js-scroll-trigger">
+                    <h3 class="text-xl font-semibold text-indigo-700 mb-1">AWS certified Cloud Practitioner</h3>
+                    <p class="text-md text-slate-600 mb-2">Issued by: Amazon Web Services</p>
+                    <p class="text-sm text-slate-500 mb-3">Date: May 2024</p>
+                    <a href="https://cp.certmetrics.com/amazon/en/public/verify/credential/b52eed3f67c14b8683fdf00c63ac845b" target="_blank" class="verify-btn">
+                        <i class="fas fa-external-link-alt"></i> Credential
+                    </a>
+                </div>
+                <div class="card js-scroll-trigger">
+                    <h3 class="text-xl font-semibold text-indigo-700 mb-1">Google Cloud Certified Professional Cloud Architect</h3>
+                    <p class="text-md text-slate-600 mb-2">Issued by: Google Cloud</p>
+                    <p class="text-sm text-slate-500 mb-3">Date: Aug 2024</p>
+                    <a href="https://partner.cloudskillsboost.google/public_profiles/24d507b7-3ab0-4c6e-ae95-c0893f194f7a/badges/10991020" target="_blank" class="verify-btn">
+                        <i class="fas fa-external-link-alt"></i> Credential
+                    </a>
+                </div>
+                <div class="card js-scroll-trigger">
+                    <h3 class="text-xl font-semibold text-indigo-700 mb-1">Reliable Google Cloud Infrastructure: Design and Process</h3>
+                    <p class="text-md text-slate-600 mb-2">Issued by: Google Cloud</p>
+                    <p class="text-sm text-slate-500 mb-3">Date: Sep 2024</p>
+                    <a href="https://partner.cloudskillsboost.google/public_profiles/24d507b7-3ab0-4c6e-ae95-c0893f194f7a/badges/11432069" target="_blank" class="verify-btn">
+                        <i class="fas fa-external-link-alt"></i> Credential
+                    </a>
+                </div>
+                <div class="card js-scroll-trigger">
+                    <h3 class="text-xl font-semibold text-indigo-700 mb-1">Alibaba Cloud Associate</h3>
+                    <p class="text-md text-slate-600 mb-2">Issued by: Alibaba Cloud</p>
+                    <p class="text-sm text-slate-500 mb-3">Date: Nov 2023</p>
+                    <a href="https://drive.google.com/file/d/1ohGjjAKiRnAEp1_RTYnH1s0_xi4SQk6m/view" target="_blank" class="verify-btn">
+                        <i class="fas fa-external-link-alt"></i> Credential
+                    </a>
+                </div>
+                <div class="card js-scroll-trigger">
+                    <h3 class="text-xl font-semibold text-indigo-700 mb-1">Alibaba Cloud Professional</h3>
+                    <p class="text-md text-slate-600 mb-2">Issued by: Alibaba Cloud</p>
+                    <p class="text-sm text-slate-500 mb-3">Date: Nov 2023</p>
+                    <a href="https://drive.google.com/file/d/1r5n_Zv04dcczIpVlO3LnF_IeTMbLGb13/view" target="_blank" class="verify-btn">
+                        <i class="fas fa-external-link-alt"></i> Credential
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="my-16 scroll-mt-20 js-scroll-trigger">
+            <h2 class="section-title js-scroll-trigger">Skills</h2>
+            <div class="card js-scroll-trigger">
+                <div class="flex flex-wrap justify-center gap-4">
+                    <span class="tag text-base py-1 px-3 bg-slate-200 text-slate-700">Networking</span>
+                    <span class="tag text-base py-1 px-3 bg-slate-200 text-slate-700">MultiCloud</span>
+                    <span class="tag text-base py-1 px-3 bg-slate-200 text-slate-700">Automations</span>
+                    <span class="tag text-base py-1 px-3 bg-slate-200 text-slate-700">Docker and Yaml</span>
+                    <span class="tag text-base py-1 px-3 bg-slate-200 text-slate-700">Ansible</span>
+                    <span class="tag text-base py-1 px-3 bg-slate-200 text-slate-700">New Technologies understanding</span>
+                    <span class="tag text-base py-1 px-3 bg-slate-200 text-slate-700">Leading full lifecycle implementation from design through execution</span>
+                </div>
+            </div>
+        </section>
+        
+        <section id="contact" class="my-16 py-16 bg-slate-100 rounded-lg scroll-mt-20 js-scroll-trigger">
+            <div class="container mx-auto text-center px-6">
+                <h2 class="section-title !text-slate-800 js-scroll-trigger">Get In Touch</h2>
+                <p class="text-lg text-slate-600 mb-8 js-scroll-trigger">
+                    I'm always open to discussing new projects, creative ideas, or opportunities to be part of something great.
+                    Feel free to reach out!
+                </p>
+                <div class="flex flex-col md:flex-row justify-center items-center gap-4 mb-6 js-scroll-trigger">
+                    <a href="mailto:MuhannadAlshmlani@gmail.com" class="btn-primary text-lg px-8 py-3">
+                        <i class="fas fa-envelope mr-2"></i> Email Me
+                    </a>
+                    <a href="Muhannad_Alshmlani_CV.pdf" download class="btn-primary text-lg px-8 py-3 inline-flex items-center">
+                        <i class="fas fa-download mr-2"></i> Download CV
+                    </a>
+                </div>
+                <div class="mt-8 flex justify-center space-x-6 js-scroll-trigger">
+                    <a href="https://www.linkedin.com/in/Alshmlani-muhannad" target="_blank" class="icon-link text-3xl"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/Alshmlani-Muhannad" target="_blank" class="icon-link text-3xl"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer class="header-bg text-white text-center p-6">
