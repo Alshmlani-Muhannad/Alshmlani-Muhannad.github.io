@@ -33,6 +33,10 @@
             pointer-events: none;
             overflow: hidden;
         }
+        .binary-bg .binary-highlight {
+            color: #7dd3fc;
+            text-shadow: 0 0 10px rgba(59, 130, 246, 0.8);
+        }
         .section-title {
             @apply text-3xl font-bold text-slate-700 mb-8 text-center;
         }
@@ -334,27 +338,29 @@
             const rows = Math.ceil(window.innerHeight / 20);
             const cols = Math.ceil(window.innerWidth / 15);
             
-            let binaryText = '';
-            for (let i = 0; i < rows; i++) {
+            function buildBinaryLine() {
                 let row = '';
                 for (let j = 0; j < cols; j++) {
-                    row += Math.random() > 0.5 ? '1' : '0';
-                }
-                binaryText += row + '\n';
-            }
-            binaryContainer.textContent = binaryText;
-            
-            // Animate the binary
-            setInterval(() => {
-                const lines = binaryContainer.textContent.split('\n');
-                const newLines = lines.map(line => {
-                    if (Math.random() > 0.9) {
-                        return line.split('').map(char => Math.random() > 0.5 ? '1' : '0').join('');
+                    const char = Math.random() > 0.5 ? '1' : '0';
+                    if (Math.random() > 0.98) {
+                        row += `<span class="binary-highlight">${char}</span>`;
+                    } else {
+                        row += char;
                     }
-                    return line;
-                });
-                binaryContainer.textContent = newLines.join('\n');
-            }, 100);
+                }
+                return row;
+            }
+
+            function renderBinaryBackground() {
+                let binaryText = '';
+                for (let i = 0; i < rows; i++) {
+                    binaryText += buildBinaryLine() + '\n';
+                }
+                binaryContainer.innerHTML = binaryText;
+            }
+
+            renderBinaryBackground();
+            setInterval(renderBinaryBackground, 800);
         }
 
         document.addEventListener('DOMContentLoaded', () => {
