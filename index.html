@@ -95,16 +95,21 @@
         }
         
         .verify-btn {
-            @apply mt-3 text-sm font-medium py-1.5 px-4 rounded;
-            background-color: #bfdbfe;
-            color: #f0f4f8;
+            @apply mt-3 text-sm font-medium py-2 px-5 rounded-full;
+            background: linear-gradient(135deg, #2563eb 0%, #3b82f6 50%, #60a5fa 100%);
+            color: #f8fdff;
             display: inline-flex;
             align-items: center;
-            transition: all 0.2s ease;
+            justify-content: center;
+            gap: 0.5rem;
+            box-shadow: 0 12px 30px rgba(37, 99, 235, 0.24);
+            border: 1px solid rgba(255,255,255,0.18);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
         }
         .verify-btn:hover {
-            background-color: #bfdbfe;
-            transform: translateY(-1px);
+            transform: translateY(-2px);
+            box-shadow: 0 16px 36px rgba(37, 99, 235, 0.32);
+            filter: brightness(1.05);
         }
         .verify-btn i {
             @apply mr-1.5;
