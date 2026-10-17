@@ -41,6 +41,22 @@
             scroll-behavior: smooth;
         }
 
+        /* Zero horizontal scroll (clip preserves sticky positioning) */
+        html,
+        body {
+            overflow-x: hidden;
+            overflow-x: clip;
+            max-width: 100%;
+        }
+
+        img,
+        svg,
+        canvas,
+        video,
+        iframe {
+            max-width: 100%;
+        }
+
         /* Navbar */
         .navbar {
             background: rgba(255, 255, 255, 0.95);
@@ -160,18 +176,20 @@
             font-weight: 700;
             color: var(--text-main);
             text-align: center;
-            margin-bottom: 3rem;
+            margin: 0 auto 3rem;
             position: relative;
-            display: inline-block;
-            left: 50%;
-            transform: translateX(-50%);
+            display: block;
+            max-width: 100%;
+            overflow-wrap: break-word;
         }
         .section-title::after {
             content: '';
             position: absolute;
             bottom: -12px;
-            left: 20%;
-            width: 60%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            max-width: 60%;
             height: 4px;
             background: linear-gradient(90deg, var(--accent), #1d4ed8);
             border-radius: 2px;
@@ -361,6 +379,60 @@
             50% { opacity: 1; }
         }
 
+        /* Nav actions (theme + hamburger, always visible) */
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-left: auto;
+        }
+
+        /* Heatmap mobile-safe scroll container */
+        .heatmap-container {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 1rem;
+            max-width: 100%;
+            scrollbar-width: thin;
+            scrollbar-color: var(--border) transparent;
+        }
+        .heatmap-container::-webkit-scrollbar {
+            height: 6px;
+        }
+        .heatmap-container::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .heatmap-container::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 3px;
+        }
+        .heatmap-svg {
+            display: block;
+            width: 100%;
+            height: auto;
+            min-width: 640px;
+        }
+        .heatmap-legend {
+            flex-wrap: wrap;
+            row-gap: 0.5rem;
+        }
+        .heatmap-tooltip {
+            max-width: calc(100vw - 3rem);
+        }
+
+        /* Anchor for absolutely-positioned tooltips */
+        .card {
+            position: relative;
+        }
+
+        /* Hero CTA row */
+        .hero-cta {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
         /* Dark Mode */
         body.dark-mode {
             --bg-light: #0f172a;
@@ -383,8 +455,30 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            .navbar {
+                padding: 0.75rem 1rem;
+            }
+            .navbar-brand {
+                font-size: 1.1rem;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 55vw;
+            }
             .mobile-menu-btn {
-                display: block;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                min-width: 44px;
+                min-height: 44px;
+            }
+            .theme-toggle {
+                margin-left: 0;
+                min-width: 44px;
+                min-height: 44px;
+            }
+            .nav-actions {
+                gap: 0.5rem;
             }
             .nav-links {
                 position: absolute;
@@ -393,32 +487,119 @@
                 right: 0;
                 background: var(--card-bg);
                 flex-direction: column;
-                padding: 1.5rem;
-                gap: 1rem;
+                padding: 0.75rem 1rem 1.25rem;
+                gap: 0.25rem;
                 display: none;
                 box-shadow: var(--shadow-lg);
                 border-bottom: 1px solid var(--border);
+                border-radius: 0 0 var(--radius) var(--radius);
+                z-index: 99;
             }
             .nav-links.open {
                 display: flex;
             }
             .nav-links a {
-                padding: 0.5rem 0;
+                padding: 0.75rem 0.5rem;
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 width: 100%;
                 text-align: center;
                 border-bottom: 1px solid rgba(0,0,0,0.05);
+                font-size: 1rem;
             }
             body.dark-mode .nav-links a {
                 border-bottom: 1px solid var(--border-dark);
             }
+
+            /* Hero */
+            .hero {
+                padding: 64px 16px;
+            }
             .hero h1 {
-                font-size: 2rem;
+                font-size: 1.9rem;
+                line-height: 1.2;
+                overflow-wrap: break-word;
             }
             .hero p {
                 font-size: 1rem;
+                line-height: 1.6;
+            }
+            .hero-cta {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .hero-cta .btn-primary,
+            .hero-cta .btn-outline {
+                width: 100%;
+                justify-content: center;
+                min-height: 48px;
+            }
+
+            /* Sections & cards */
+            main.container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            .card {
+                padding: 1.25rem 1rem;
+            }
+            section[id] {
+                scroll-margin-top: 110px;
             }
             .section-title {
                 font-size: 1.75rem;
+            }
+
+            /* Touch-friendly actions */
+            .btn-primary,
+            .btn-outline,
+            .verify-btn {
+                min-height: 44px;
+            }
+            .contact-section .btn-primary,
+            .contact-section .btn-outline {
+                width: 100%;
+                justify-content: center;
+                margin-left: 0 !important;
+            }
+
+            /* Heatmap mobile */
+            .heatmap-container {
+                margin-left: -0.5rem;
+                margin-right: -0.5rem;
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
+            .heatmap-svg {
+                min-width: 620px;
+            }
+            .heatmap-legend {
+                font-size: 0.7rem;
+                gap: 0.35rem;
+            }
+        }
+
+        /* Small phones */
+        @media (max-width: 480px) {
+            .hero {
+                padding: 52px 12px;
+            }
+            .hero h1 {
+                font-size: 1.65rem;
+            }
+            .hero p {
+                font-size: 0.95rem;
+            }
+            .section-title {
+                font-size: 1.5rem;
+            }
+            .card {
+                padding: 1rem 0.9rem;
+            }
+            .heatmap-svg {
+                min-width: 560px;
             }
         }
 
@@ -427,19 +608,21 @@
 <body class="text-slate-800">
 
     <nav class="navbar p-4">
-        <div class="container mx-auto flex justify-between items-center px-4">
+        <div class="container mx-auto flex justify-between items-center px-4" style="position: relative;">
             <a href="#" class="navbar-brand">Muhannad Alshmlani</a>
-            <div class="nav-links">
+            <div class="nav-links" id="mobileNavLinks">
                 <a href="#about" class="hover:text-blue-300 transition-colors">About</a>
                 <a href="#experience" class="hover:text-blue-300 transition-colors">Experience</a>
                 <a href="#projects" class="hover:text-blue-300 transition-colors">Projects</a>
                 <a href="#certificates" class="hover:text-blue-300 transition-colors">Certificates</a>
                 <a href="#skills" class="hover:text-blue-300 transition-colors">Skills</a>
                 <a href="#contact" class="hover:text-blue-300 transition-colors">Contact</a>
+            </div>
+            <div class="nav-actions">
                 <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
                     <i class="fas fa-moon"></i>
                 </button>
-                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileNavLinks">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
@@ -451,9 +634,9 @@
         <div class="hero-content">
             <h1 class="js-header-item title-animate">Hello, I'm <span style="color: var(--accent);">Muhannad Alshmlani</span></h1>
             <p class="js-header-item subtitle-animate">Cloud Engineer &nbsp;|&nbsp; Automation & AI Solutions &nbsp;|&nbsp; Multi-Cloud Architecture</p>
-            <div class="js-header-item button-animate" style="margin-top: 1rem;">
+            <div class="js-header-item button-animate hero-cta" style="margin-top: 1rem;">
                 <a href="#contact" class="btn-primary">Get in Touch</a>
-                <a href="Muhannad_Alshmlani_CV.pdf" download class="btn-outline" style="margin-left: 1rem;">Download CV</a>
+                <a href="Muhannad_Alshmlani_CV.pdf" download class="btn-outline">Download CV</a>
             </div>
         </div>
     </section>
@@ -582,18 +765,18 @@
         <section id="github-contributions" class="my-20 scroll-mt-24 js-scroll-trigger">
             <div class="card" style="max-width: 900px; margin: 0 auto;">
                 <h2 class="section-title js-scroll-trigger">GitHub Contributions</h2>
-                <div class="heatmap-container" style="overflow-x: auto; padding-bottom: 1rem;">
-                    <svg id="contributionHeatmap" width="100%" height="180" viewBox="0 0 760 180" role="img" aria-labelledby="heatmapTitle heatmapDesc" tabindex="0">
+                <div class="heatmap-container">
+                    <svg id="contributionHeatmap" class="heatmap-svg" height="180" viewBox="0 0 760 180" role="img" aria-labelledby="heatmapTitle heatmapDesc" tabindex="0">
                         <title id="heatmapTitle">GitHub Contributions Heatmap</title>
                         <desc id="heatmapDesc">Live GitHub contribution activity for Alshmlani-Muhannad</desc>
                         <!-- Grid will be generated by JavaScript -->
                     </svg>
                 </div>
-                <div id="heatmapTooltip" class="heatmap-tooltip" style="display: none; position: absolute; background: var(--card-bg); border: 1px solid var(--border); border-radius: 6px; padding: 0.5rem 0.75rem; font-size: 0.875rem; font-weight: 600; color: var(--text-main); box-shadow: var(--shadow-lg); pointer-events: none; z-index: 50; white-space: nowrap;">
+                <div id="heatmapTooltip" class="heatmap-tooltip" role="tooltip" style="display: none; position: absolute; background: var(--card-bg); border: 1px solid var(--border); border-radius: 6px; padding: 0.5rem 0.75rem; font-size: 0.875rem; font-weight: 600; color: var(--text-main); box-shadow: var(--shadow-lg); pointer-events: none; z-index: 50; white-space: nowrap; max-width: calc(100vw - 3rem);">
                     <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.25rem;">Jul 15, 2024</div>
                     <div style="color: var(--accent);">12 contributions</div>
                 </div>
-                <div style="margin-top: 1rem; display: flex; justify-content: center; align-items: center; gap: 0.4rem; font-size: 0.75rem; color: var(--text-muted);">
+                <div class="heatmap-legend" style="margin-top: 1rem; display: flex; justify-content: center; align-items: center; gap: 0.4rem; font-size: 0.75rem; color: var(--text-muted);">
                     <span>Less</span>
                     <div style="width: 12px; height: 12px; background: #ebedf0; border-radius: 2px;" class="legend-swatch" data-lvl="0"></div>
                     <div style="width: 12px; height: 12px; background: #9be9a8; border-radius: 2px;" class="legend-swatch" data-lvl="1"></div>
@@ -736,7 +919,32 @@ function wireMobileMenu() {
     if (!btn) return;
     btn.addEventListener('click', function () {
         var links = document.querySelector('.nav-links');
-        if (links) links.classList.toggle('open');
+        if (!links) return;
+        var open = links.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        btn.innerHTML = open ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+    });
+    var links = document.querySelectorAll('.nav-links a');
+    for (var i = 0; i < links.length; i++) {
+        (function (a) {
+            a.addEventListener('click', function () {
+                var nav = document.querySelector('.nav-links');
+                if (nav) nav.classList.remove('open');
+                btn.setAttribute('aria-expanded', 'false');
+                btn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        })(links[i]);
+    }
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+            var nav = document.querySelector('.nav-links');
+            if (nav && nav.classList.contains('open')) {
+                nav.classList.remove('open');
+                btn.setAttribute('aria-expanded', 'false');
+                btn.innerHTML = '<i class="fas fa-bars"></i>';
+                btn.focus();
+            }
+        }
     });
 }
 // Heatmap render + tooltip + recolor (part 2)
@@ -965,27 +1173,62 @@ function recolorHeatmap() {
         var lvl = parseInt(r.getAttribute('data-lvl'), 10) || 0;
         r.setAttribute('fill', dark ? darkC[lvl] : lightC[lvl]);
     });
+    document.querySelectorAll('.legend-swatch[data-lvl]').forEach(function (s) {
+        var lvl = parseInt(s.getAttribute('data-lvl'), 10) || 0;
+        s.style.background = dark ? darkC[lvl] : lightC[lvl];
+    });
 }
 
 function showTip(e) {
-    var tip = document.getElementById('heatmapTooltip');
-    if (!tip) return;
-    var el = e.currentTarget || e.target;
-    var count = el.getAttribute('data-count');
-    var date = el.getAttribute('data-date');
-    var label = count === '1' ? '1 contribution' : (count === '0' ? 'No contributions' : count + ' contributions');
-    tip.innerHTML = '<div style="font-size:0.75rem;">' + date + '</div><div style="color:var(--accent);">' + label + '</div>';
-    tip.style.display = 'block';
-    moveTip(e);
+    positionTipFromEvent(e);
 }
 
 function moveTip(e) {
     var tip = document.getElementById('heatmapTooltip');
     if (!tip || tip.style.display === 'none') return;
+    if (typeof e.clientX !== 'number' || typeof e.clientY !== 'number') return;
     var card = tip.closest('.card') || document.body;
     var box = card.getBoundingClientRect();
-    tip.style.left = ((e.clientX - box.left) + 14) + 'px';
-    tip.style.top = ((e.clientY - box.top) - 10) + 'px';
+    var tipW = tip.offsetWidth || 160;
+    var tipH = tip.offsetHeight || 48;
+    var x = (e.clientX - box.left) + 14;
+    var y = (e.clientY - box.top) - tipH - 8;
+    x = Math.max(4, Math.min(x, box.width - tipW - 4));
+    y = Math.max(4, y);
+    tip.style.left = x + 'px';
+    tip.style.top = y + 'px';
+}
+
+function positionTipFromEvent(e) {
+    var tip = document.getElementById('heatmapTooltip');
+    if (!tip) return;
+    var el = e.currentTarget || e.target;
+    if (!el || !el.getAttribute) return;
+    var count = el.getAttribute('data-count');
+    var date = el.getAttribute('data-date');
+    var label = count === '1' ? '1 contribution' : (count === '0' ? 'No contributions' : count + ' contributions');
+    tip.innerHTML = '<div style="font-size:0.75rem;">' + date + '</div><div style="color:var(--accent);">' + label + '</div>';
+    tip.style.display = 'block';
+    // Touch / keyboard focus has no pointer coords: anchor near the tile
+    if (typeof e.clientX !== 'number' || typeof e.clientY !== 'number') {
+        var card = tip.closest('.card') || document.body;
+        var box = card.getBoundingClientRect();
+        try {
+            var r = el.getBoundingClientRect ? el.getBoundingClientRect() : null;
+            if (r) {
+                var tipH = tip.offsetHeight || 48;
+                var x = Math.max(4, Math.min(r.left - box.left, box.width - 170));
+                var y = Math.max(4, (r.top - box.top) - tipH - 8);
+                tip.style.left = x + 'px';
+                tip.style.top = y + 'px';
+                return;
+            }
+        } catch (err) {}
+        tip.style.left = '12px';
+        tip.style.top = '12px';
+        return;
+    }
+    moveTip(e);
 }
 
 function hideTip() {
